@@ -3,6 +3,19 @@ InfluxEnterprise Ansible Roles
 
 This repository is for deploying InfluxEnterprise using Ansible.
 
+Setup
+-----
+
+You will need SSH access to all machines. You will also want to add
+the `ansible/` directory of this repository to your Ansible `roles_path`
+(or copy the subdirectories to your existing role path). 
+
+For example, adding this to your `ansible.cfg`:
+
+```
+roles_path = /path/to/enterprise-deployment/ansible
+```
+
 Requirements
 ------------
 
