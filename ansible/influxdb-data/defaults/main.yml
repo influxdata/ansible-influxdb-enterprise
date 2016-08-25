@@ -1,0 +1,81 @@
+---
+
+influx_enterprise_license_key:
+influxdb_data_install_url: https://s3.amazonaws.com/influx-enterprise/releases/influxdb-data-1.0.0_beta3_c1.0.0rc1.x86_64.rpm
+
+influxdb_data_hostname:
+influxdb_data_disable_reporting: false
+influxdb_data_meta_tls_enabled: false
+
+influxdb_data_configuration_dir: /etc/influxdb
+
+influxdb_data_registration_enabled: false
+influxdb_data_registration_server_url:
+influxdb_data_license_path:
+
+influxdb_data_enabled: true
+influxdb_data_dir: /var/lib/influxdb/data
+influxdb_data_max_wal_size: 104857600
+influxdb_data_wal_flush_interval: 10m0s
+influxdb_data_wal_partition_flush_delay: 2s
+influxdb_data_wal_dir: /var/lib/influxdb/wal
+influxdb_data_wal_logging_enabled: true
+influxdb_data_wal_ready_series_size: 30720
+influxdb_data_wal_compaction_threshold: 0.5
+influxdb_data_wal_max_series_size: 1048576
+influxdb_data_wal_flush_cold_interval: 5s
+influxdb_data_wal_partition_size_threshold: 52428800
+influxdb_data_query_log_enabled: true
+influxdb_data_cache_max_memory_size: 524288000
+influxdb_data_cache_snapshot_memory_size: 26214400
+influxdb_data_cache_snapshot_write_cold_duration: 1h0m0s
+influxdb_data_compact_full_write_cold_duration: 24h0m0s
+influxdb_data_max_points_per_block: 0
+influxdb_data_data_logging_enabled: true
+
+influxdb_data_force_remote_mapping: false
+influxdb_data_write_timeout: 5s
+influxdb_data_shard_writer_timeout: 5s
+influxdb_data_max_remote_write_connections: 3
+influxdb_data_shard_mapper_timeout: 5s
+
+influxdb_data_retention_enabled: true
+influxdb_data_retention_check_interval: 30m0s
+
+influxdb_data_shard_precreation_enabled: true
+influxdb_data_shard_precreation_check_interval: 10m0s
+influxdb_data_shard_precreation_advance_period: 30m0s
+
+influxdb_data_admin_enabled: false
+influxdb_data_admin_bind_address: :8083
+influxdb_data_admin_https_enabled: false
+influxdb_data_admin_https_certificate: /etc/ssl/influxdb.pem
+
+influxdb_data_monitor_store_enabled: true
+influxdb_data_monitor_store_database: _internal
+influxdb_data_monitor_store_interval: 10s
+
+influxdb_data_subscriber_enabled: true
+
+influxdb_data_http_enabled: true
+influxdb_data_http_bind_address_hostname:
+influxdb_data_http_bind_address_port: 8086
+influxdb_data_http_auth_enabled: false
+influxdb_data_http_log_enabled: true
+influxdb_data_http_write_tracing: false
+influxdb_data_http_pprof_enabled: false
+influxdb_data_http_https_enabled: false
+influxdb_data_http_https_certificate: /etc/ssl/influxdb.pem
+
+influxdb_data_cq_log_enabled: true
+influxdb_data_cq_enabled: true
+influxdb_data_cq_run_interval: 1s
+
+influxdb_data_hh_enabled: true
+influxdb_data_hh_dir: /var/lib/influxdb/hh
+influxdb_data_hh_max_size: 1073741824
+influxdb_data_hh_max_age: 168h0m0s
+influxdb_data_hh_retry_rate_limit: 0
+influxdb_data_hh_retry_interval: 1s
+influxdb_data_hh_retry_max_interval: 1m0s
+influxdb_data_hh_purge_interval: 1h0m0s

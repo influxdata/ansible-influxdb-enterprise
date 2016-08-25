@@ -1,0 +1,31 @@
+---
+- name: Install any necessary dependencies [RedHat/CentOS]
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - python
+    - curl
+
+- name: Install any necessary dependencies [RedHat only]
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - python-httplib2
+  when: ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: Install influxdb-meta from URL [RHEL/CentOS]
+  yum:
+    name: "{{ influxdb_meta_install_url }}"
+    state: present
+  when: influxdb_meta_install_url is defined and influxdb_meta_install_url != None
+
+- name: Install pip [CentOS only]
+  command: bash -c "curl https://bootstrap.pypa.io/get-pip.py | python -"
+  when: ansible_distribution == 'CentOS'
+
+- name: Install httplib2 [CentOS only]
+  pip:
+    name: httplib2
+  when: ansible_distribution == 'CentOS'

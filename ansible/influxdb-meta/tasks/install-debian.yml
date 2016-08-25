@@ -1,0 +1,20 @@
+---
+- name: Install any necessary dependencies [Debian/Ubuntu]
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+  with_items:
+    - curl
+    - python-httplib2
+
+- name: Download influxdb-meta package via URL [Debian/Ubuntu]
+  command: curl -o /tmp/influxdb-meta-ansible-download.deb {{ influxdb_meta_install_url }}
+  when: influxdb_meta_install_url is defined and influxdb_meta_install_url != None
+
+- name: Install downloaded influxdb-meta package [Debian/Ubuntu]
+  apt:
+    deb: /tmp/influxdb-meta-ansible-download.deb
+    state: present
+  when: influxdb_meta_install_url is defined and influxdb_meta_install_url != None
