@@ -39,14 +39,15 @@
       - "influxdb_data_start_attempt == 0"
   when: influxdb_data_started.changed and influxdb_data_start_service and influxdb_data_start_attempt.failed is defined and influxdb_data_start_attempt.failed == True
 
+# FIXME: Don't hard-code port 8091
 - name: Capture current cluster status
   uri:
     url: http://localhost:8091/show-cluster
   register: influxdb_data_show_cluster
 
-# TODO - not make port 8088 hard-coded
+# FIXME: Don't hard-code port 8088
 - name: Add data nodes to cluster (run from first meta node)
   command: influxd-ctl add-data {{ item }}:8088
-  when: item not in influxdb_data_show_cluster['json']['data']|default([], true)
+  when: "'{{ item }}:8088' not in influxdb_data_show_cluster['json']['data']|map(attribute='addr')|list"
   with_items: "{{ groups.data }}"
   delegate_to: "{{ groups.meta[0] }}"

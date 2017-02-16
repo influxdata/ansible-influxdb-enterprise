@@ -1,7 +1,7 @@
 ---
 
 influx_enterprise_license_key:
-influxdb_data_install_url: https://s3.amazonaws.com/influx-enterprise/releases/influxdb-data-1.0.0_beta3_c1.0.0rc1.x86_64.rpm
+influxdb_data_install_url: https://dl.influxdata.com/enterprise/releases/influxdb-data-1.1.1_c1.1.1.x86_64.rpm
 
 influxdb_data_hostname:
 influxdb_data_disable_reporting: false
