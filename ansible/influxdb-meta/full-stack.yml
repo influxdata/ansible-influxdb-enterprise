@@ -1,3 +1,4 @@
+---
 - hosts: all
   roles:
     - role: influxdb-data
@@ -5,4 +6,3 @@
 - hosts: all
   roles:
     - role: influxdb-meta
-
