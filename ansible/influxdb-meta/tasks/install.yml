@@ -1,6 +1,6 @@
 ---
-- include: install-redhat.yml
-  when: ansible_os_family == "RedHat"
+- name: "Loading vars for {{ ansible_os_family }}"
+  include_vars: "{{ ansible_os_family | lower }}.yml"
 
-- include: install-debian.yml
-  when: ansible_os_family == "Debian"
+- name: "Installing for {{ ansible_os_family }}"
+  include: "install-{{ ansible_os_family | lower }}.yml"

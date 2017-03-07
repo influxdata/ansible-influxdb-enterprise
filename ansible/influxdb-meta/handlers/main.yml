@@ -1,6 +1,6 @@
 ---
 - name: restart influxdb-meta service
-  service: 
+  service:
     name: influxdb-meta
     state: restarted
 

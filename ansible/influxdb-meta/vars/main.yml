@@ -1,14 +1,6 @@
 ---
-
-# Whether or not the playbook is run locally (changes clustering and testing logic slightly)
-# This should only be set in the Vagrantfile and not modified elsewhere
-is_vagrant: no
-
 # If yes, service will be started. Will not be started if set to no.
 influxdb_meta_start_service: yes
 
 # If yes, will overwrite the packaged configuration with an Asnible/jinja2 template
 influxdb_meta_template_configuration: yes
-
-# Yes, will overwrite the /etc/hosts file with the hostnames from the inventory
-influxdb_meta_overwrite_hosts: no

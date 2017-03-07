@@ -1,7 +1,5 @@
 ---
-
 influx_enterprise_license_key:
-influxdb_meta_install_url: https://dl.influxdata.com/enterprise/releases/influxdb-meta-1.1.1_c1.1.1.x86_64.rpm
 
 influxdb_meta_configuration_dir: /etc/influxdb
 
@@ -32,3 +30,9 @@ influxdb_meta_raft_promotion_enabled: true
 influxdb_meta_logging_enabled: true
 influxdb_meta_pprof_enabled: false
 influxdb_meta_lease_duration: 1m0s
+
+influxdb_meta_package_base_url: "https://s3.amazonaws.com/dl.influxdata.com"
+
+influxdb_meta_cluster_auto_join: true # Attempt to add all members to the cluster automatically
+influxdb_meta_cluster_leader: # The IP of the meta-node cluster leader
+influxdb_meta_cluster_members: # A list of cluster members
