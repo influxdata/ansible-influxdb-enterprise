@@ -1,0 +1,2 @@
+---
+influxdb_meta_install_url: "{{ influxdb_meta_package_base_url }}/enterprise/releases/influxdb-meta-1.1.1_c1.1.1.x86_64.rpm"
