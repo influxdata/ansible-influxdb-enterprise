@@ -1,0 +1,14 @@
+---
+- name: 'restart influxdb-meta'
+  service:
+    name: "{{ influx_svc_names['meta'] }}"
+    state: 'restarted'
+
+- name: 'restart influxdb-data'
+  service:
+    name: "{{ influx_svc_names['data'] }}"
+    state: 'restarted'
+
+- name: 'pause'
+  pause:
+    seconds: 3

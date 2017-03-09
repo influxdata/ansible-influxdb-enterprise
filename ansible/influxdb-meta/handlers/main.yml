@@ -1,9 +1,0 @@
----
-- name: restart influxdb-meta service
-  service:
-    name: influxdb-meta
-    state: restarted
-
-- name: pause
-  pause:
-    seconds: 3

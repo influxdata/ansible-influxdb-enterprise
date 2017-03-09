@@ -1,9 +1,0 @@
----
-- include: install.yml
-  tags: [influxdb-meta, influxdb-meta-install]
-
-- include: configure.yml
-  tags: [influxdb-meta, influxdb-meta-configure]
-
-- include: service.yml
-  tags: [influxdb-meta, influxdb-meta-service]
