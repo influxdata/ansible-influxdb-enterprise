@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Ross McDonald
-  description: Install and configure InfluxDB, a time-series database
+  description: Install and configure InfluxDB Enterprise, a time-series database
   company: InfluxData
   license: MIT
   min_ansible_version: 1.2
@@ -22,5 +22,5 @@ galaxy_info:
   categories:
     - clustering
     - database:nosql
+    - "time series"
   dependencies: []
-

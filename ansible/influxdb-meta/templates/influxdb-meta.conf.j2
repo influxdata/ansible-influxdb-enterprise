@@ -1,32 +1,32 @@
-reporting-disabled = {{ influxdb_meta_reporting_disabled|lower }}
-bind-address = "{{ influxdb_meta_bind_address|default("", true) }}"
-{% if influxdb_meta_hostname is defined and influxdb_meta_hostname != None %}
-hostname = "{{ influxdb_meta_hostname }}"
+reporting-disabled = {{ influx_meta_reporting_disabled|lower }}
+bind-address = "{{ influx_meta_bind_address|default("", true) }}"
+{% if influx_meta_hostname is defined and influx_meta_hostname != None %}
+hostname = "{{ influx_meta_hostname }}"
 {% else %}
 hostname = "{{ ansible_hostname }}"
 {% endif %}
 
 [enterprise]
-  registration-enabled = {{ influxdb_meta_registration_enabled|lower }}
-  registration-server-url = "{{ influxdb_meta_registration_server_url|default("", true) }}"
+  registration-enabled = {{ influx_meta_registration_enabled|lower }}
+  registration-server-url = "{{ influx_meta_registration_server_url|default("", true) }}"
   license-key = "{{ influx_enterprise_license_key|default("", true) }}"
-  license-path = "{{ influxdb_meta_license_path|default("", true) }}"
+  license-path = "{{ influx_meta_license_path|default("", true) }}"
 
 [meta]
-  dir = "{{ influxdb_meta_dir }}"
-  bind-address = "{{ influxdb_meta_bind_address_hostname|default("", true) }}:{{ influxdb_meta_bind_address_port }}"
-  http-bind-address = "{{ influxdb_meta_http_bind_address_hostname|default("", true) }}:{{ influxdb_meta_http_bind_address_port }}"
-  https-enabled = {{ influxdb_meta_https_enabled|lower }}
-  https-certificate = "{{ influxdb_meta_https_certificate }}"
-  gossip-frequency = "{{ influxdb_meta_gossip_frequency }}"
-  announcement-expiration = "{{ influxdb_meta_announcement_expiration }}"
-  retention-autocreate = {{ influxdb_meta_retention_autocreate|lower }}
-  election-timeout = "{{ influxdb_meta_election_timeout }}"
-  heartbeat-timeout = "{{ influxdb_meta_heartbeat_timeout }}"
-  leader-lease-timeout = "{{ influxdb_meta_leader_lease_timeout }}"
-  commit-timeout = "{{ influxdb_meta_commit_timeout }}"
-  cluster-tracing = {{ influxdb_meta_cluster_tracing|lower }}
-  raft-promotion-enabled = {{ influxdb_meta_raft_promotion_enabled|lower }}
-  logging-enabled = {{ influxdb_meta_logging_enabled|lower }}
-  pprof-enabled = {{ influxdb_meta_pprof_enabled|lower }}
-  lease-duration = "{{ influxdb_meta_lease_duration }}"
+  dir = "{{ influx_meta_dir }}"
+  bind-address = "{{ influx_meta_bind_address_hostname|default("", true) }}:{{ influx_meta_bind_address_port }}"
+  http-bind-address = "{{ influx_meta_http_bind_address_hostname|default("", true) }}:{{ influx_meta_http_bind_address_port }}"
+  https-enabled = {{ influx_meta_https_enabled|lower }}
+  https-certificate = "{{ influx_meta_https_certificate }}"
+  gossip-frequency = "{{ influx_meta_gossip_frequency }}"
+  announcement-expiration = "{{ influx_meta_announcement_expiration }}"
+  retention-autocreate = {{ influx_meta_retention_autocreate|lower }}
+  election-timeout = "{{ influx_meta_election_timeout }}"
+  heartbeat-timeout = "{{ influx_meta_heartbeat_timeout }}"
+  leader-lease-timeout = "{{ influx_meta_leader_lease_timeout }}"
+  commit-timeout = "{{ influx_meta_commit_timeout }}"
+  cluster-tracing = {{ influx_meta_cluster_tracing|lower }}
+  raft-promotion-enabled = {{ influx_meta_raft_promotion_enabled|lower }}
+  logging-enabled = {{ influx_meta_logging_enabled|lower }}
+  pprof-enabled = {{ influx_meta_pprof_enabled|lower }}
+  lease-duration = "{{ influx_meta_lease_duration }}"

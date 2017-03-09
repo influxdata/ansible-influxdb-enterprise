@@ -5,10 +5,10 @@
 is_vagrant: no
 
 # If yes, service will be started. Will not be started if set to no.
-influxdb_data_start_service: yes
+influx_data_start_service: yes
 
 # If yes, will overwrite the packaged configuration with an Asnible/jinja2 template
-influxdb_data_template_configuration: yes
+influx_data_template_configuration: yes
 
 # Yes, will overwrite the /etc/hosts file with the hostnames from the inventory
-influxdb_data_overwrite_hosts: no
+influx_data_overwrite_hosts: no

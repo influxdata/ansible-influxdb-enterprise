@@ -1,19 +1,19 @@
 ---
 - name: Set configuration directory path
   file:
-    path: "{{ influxdb_data_configuration_dir }}"
+    path: "{{ influx_data_configuration_dir }}"
     state: directory
 
 - name: Set templatized influxdb-data configuration
   template:
     src: influxdb.conf.j2
-    dest: "{{ influxdb_data_configuration_dir }}/influxdb.conf"
+    dest: "{{ influx_data_configuration_dir }}/influxdb.conf"
     force: yes
     backup: yes
     owner: influxdb
     group: influxdb
     mode: 0744
-  when: influxdb_data_template_configuration
+  when: influx_data_template_configuration
 
 - name: Overwrite hosts file
   template:
@@ -22,7 +22,7 @@
     owner: root
     group: root
     mode: 0644
-  when: is_vagrant or influxdb_data_overwrite_hosts
+  when: is_vagrant or influx_data_overwrite_hosts
 
 - name: Stop firewalld [local testing only]
   service:

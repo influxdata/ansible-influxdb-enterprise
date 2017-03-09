@@ -17,9 +17,9 @@
 
 - name: Install influxdb-meta from URL [RHEL/CentOS]
   yum:
-    name: "{{ influxdb_meta_install_url }}"
+    name: "{{ influx_meta_install_url }}"
     state: present
-  when: influxdb_meta_install_url is defined and influxdb_meta_install_url != None
+  when: influx_meta_install_url is defined and influx_meta_install_url != None
 
 - name: Install pip [CentOS only]
   command: bash -c "curl https://bootstrap.pypa.io/get-pip.py | python -"

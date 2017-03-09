@@ -39,10 +39,10 @@ Vagrant.configure(2) do |config|
         ansible.groups            = {"meta-nodes" => members}
 
         ansible.extra_vars = {
-          influx_enterprise_license_key: ENV['INFLUXDB_ENTERPRISE_LICENSE_KEY'],
-          influxdb_meta_cluster_leader: leader,
-          influxdb_meta_cluster_members: members,
-          influxdb_meta_http_bind_address_port: 8091
+          influx_enterprise_license_key: ENV['INFLUX_ENTERPRISE_LICENSE_KEY'],
+          influx_meta_cluster_leader: leader,
+          influx_meta_cluster_members: members,
+          influx_meta_http_bind_address_port: 8091
         }
       end if machine_id == BOX_COUNT # Run Ansible, only once the final machine is configured
     end
