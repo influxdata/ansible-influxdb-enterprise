@@ -1,0 +1,36 @@
+---
+# These tests need to be run against a cluster with at least 3 meta-nodes in the cluster
+- hosts: localhost
+  tasks:
+    - name: Test erroneous endpoint
+      uri:
+          url: http://localhost:8091/ding
+          status_code: 400
+          return_content: yes
+      register: body
+
+    - name: Test erroneous response body
+      fail:
+      when: "'error parsing index' not in body.content"
+
+    - name: Test ping resrouce
+      uri:
+          url: http://localhost:8091/ping
+          status_code: 200
+          return_content: yes
+      register: body
+
+    - name: Test ping response
+      fail:
+      when: '"metanode-00" not in body.json.addr'
+
+    - name: Test ping resrouce
+      uri:
+          url: http://localhost:8091/status
+          status_code: 200
+          return_content: yes
+      register: body
+
+    - name: Test there are 3 peers in the cluster
+      fail:
+      when: body.json.peers|length|int < 3

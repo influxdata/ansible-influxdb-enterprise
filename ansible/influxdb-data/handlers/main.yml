@@ -1,9 +1,0 @@
----
-- name: restart influxdb-data service
-  service: 
-    name: influxdb
-    state: restarted
-
-- name: pause
-  pause:
-    seconds: 3

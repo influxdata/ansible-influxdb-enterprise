@@ -1,0 +1,26 @@
+hostname = "{{ ansible_hostname|mandatory }}"
+
+[enterprise]
+  registration-enabled = {{ influx_meta_registration_enabled|lower|mandatory }}
+  registration-server-url = "{{ influx_meta_registration_server_url|default("", true) }}"
+  license-key = "{{ influx_enterprise_license_key|default("", true) }}"
+  license-path = "{{ influx_meta_license_path|default("", true) }}"
+
+[meta]
+  dir = "{{ influx_meta_dir|mandatory }}"
+  bind-address = "{{ influx_meta_bind_address_hostname|default("", true) }}:{{ influx_meta_bind_port|mandatory }}"
+  http-bind-address = "{{ influx_meta_http_bind_address_hostname|default("", true) }}:{{ influx_meta_http_bind_port|mandatory }}"
+  https-enabled = {{ influx_meta_https_enabled|lower|mandatory }}
+  https-certificate = "{{ influx_meta_https_certificate|mandatory }}"
+  gossip-frequency = "{{ influx_meta_gossip_frequency|mandatory }}"
+  announcement-expiration = "{{ influx_meta_announcement_expiration|mandatory }}"
+  retention-autocreate = {{ influx_meta_retention_autocreate|lower|mandatory }}
+  election-timeout = "{{ influx_meta_election_timeout|mandatory }}"
+  heartbeat-timeout = "{{ influx_meta_heartbeat_timeout|mandatory }}"
+  leader-lease-timeout = "{{ influx_meta_leader_lease_timeout|mandatory }}"
+  commit-timeout = "{{ influx_meta_commit_timeout|mandatory }}"
+  cluster-tracing = {{ influx_meta_cluster_tracing|lower|mandatory }}
+  raft-promotion-enabled = {{ influx_meta_raft_promotion_enabled|lower|mandatory }}
+  logging-enabled = {{ influx_meta_logging_enabled|lower|mandatory }}
+  pprof-enabled = {{ influx_meta_pprof_enabled|lower|mandatory }}
+  lease-duration = "{{ influx_meta_lease_duration|mandatory }}"

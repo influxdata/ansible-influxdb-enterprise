@@ -1,0 +1,18 @@
+---
+- hosts: all
+  pre_tasks:
+    - name: "Check a license key has been set"
+      fail:
+        msg: "License key has not been set, see Vagrantfile"
+      when: influx_enterprise_license_key is not defined
+    - name: "Populate hosts file"
+      lineinfile:
+        dest: '/etc/hosts'
+        regexp: '.*{{ item }}$'
+        line: "{{ hostvars[item].facter_ipaddress_eth1 }}  {{item}}"
+        state: 'present'
+      when: groups['meta-nodes'] is defined
+      with_items: "{{ groups['influx-nodes'] }}"
+  roles:
+      - { role: 'influxdb-enterprise' }
+      - { role: 'influxdb-enterprise', influx_node_type: 'data' }

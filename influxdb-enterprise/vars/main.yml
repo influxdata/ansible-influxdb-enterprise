@@ -1,0 +1,3 @@
+# These vars have the highest precedence, should rarely be changed.
+influx_svc_names: { 'data': 'influxdb', 'meta': 'influxdb-meta' }
+influx_config_filenames: { 'data': 'influxdb.conf', 'meta': 'influxdb-meta.conf' }

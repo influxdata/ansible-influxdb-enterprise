@@ -1,0 +1,21 @@
+---
+# These tests need to be run against a cluster with at least 3 meta-nodes in the cluster
+- hosts: localhost
+  tasks:
+    - name: Test data node is up and OK
+      uri:
+          url: http://localhost:8086/status
+          status_code: 204
+          return_content: yes
+      register: body
+
+    - name: Test ping resrouce
+      uri:
+          url: http://localhost:8091/status
+          status_code: 200
+          return_content: yes
+      register: body
+
+    - name: Test the meta node is running
+      fail:
+      when: body.json.nodeType != 'meta'

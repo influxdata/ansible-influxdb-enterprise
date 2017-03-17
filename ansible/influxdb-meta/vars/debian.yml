@@ -1,2 +1,0 @@
----
-influxdb_meta_install_url: "{{ influxdb_meta_package_base_url }}/enterprise/releases/influxdb-meta_1.1.1-c1.1.1_amd64.deb"

@@ -1,5 +1,0 @@
----
-- name: Install any necessary dependencies [Debian/Ubuntu]
-  apt:
-      deb: "{{ influxdb_meta_install_url }}"
-      state: present

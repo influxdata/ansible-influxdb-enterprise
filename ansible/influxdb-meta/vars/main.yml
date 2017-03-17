@@ -1,6 +1,0 @@
----
-# If yes, service will be started. Will not be started if set to no.
-influxdb_meta_start_service: yes
-
-# If yes, will overwrite the packaged configuration with an Asnible/jinja2 template
-influxdb_meta_template_configuration: yes
