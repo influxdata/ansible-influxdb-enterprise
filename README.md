@@ -27,6 +27,7 @@ Pull requests welcome!
 A full test suite can be executed using via the following commands.
 
 ```
- $ vagrant up INFLUX_ENTERPRISE_LICENSE_KEY=XXX-XXX-XXX
+ $ export INFLUX_ENTERPRISE_LICENSE_KEY=XXX-XXX-XXX
+ $ vagrant up
  $ ansible-playbook tests/cluster.yml -vvvv
 ```
