@@ -14,5 +14,5 @@
       when: groups['meta-nodes'] is defined
       with_items: "{{ groups['influx-nodes'] }}"
   roles:
-      - { role: 'influxdb-enterprise' }
-      - { role: 'influxdb-enterprise', influx_node_type: 'data' }
+      - { role: 'ansible-influxdb-enterprise' }
+      - { role: 'ansible-influxdb-enterprise', influx_node_type: 'data' }
