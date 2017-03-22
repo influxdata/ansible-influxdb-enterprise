@@ -2,16 +2,36 @@
 
 This role will install an InfluxDB Enterprise cluster. Both meta and data nodes.
 
-# Usage
+## Usage
+
+Add the following to your `requirements.yml`:
+
+```
+- src: influxdata.influxdb-enterprise
+  name: influxdb-enterprise
+```
+
+Install to your roles directory:
+
+` $ ansible-galaxy install -r requirements.yaml`
+
+Include in your Playbooks:
 
 ```
 ---
-# influxdb-enterprise.yaml
-hosts: influx-servers
-roles:
-    - common
-    - { role: influxdb-enterprise, influx_node_type: "meta", influx_enterprise_license_key: XXX-XXX-XXX }
-    - { role: influxdb-enterprise, influx_node_type: "data", influx_enterprise_license_key: XXX-XXX-XXX }
+# site.yml
+
+- hosts: influxdb
+  become: yes
+
+  roles:
+  - { role: 'influxdb-enterprise', influx_node_type: meta }
+  - { role: 'influxdb-enterprise', influx_node_type: data }
+
+  vars:
+  influx_cluster_auto_join: true
+  influx_meta_cluster_leader: influxdb_001
+  influx_enterprise_license_key: XXX-XXX-XXX
 ```
 
 # Prerequisites

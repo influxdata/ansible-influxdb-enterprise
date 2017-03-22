@@ -51,6 +51,5 @@
   delegate_to: "{{ influx_meta_cluster_leader }}"
   when:
     - influx_cluster_auto_join
-    - influx_meta_cluster_leader == ansible_hostname
     - influx_meta_cluster_leader is defined
   tags: ['influx', 'cluster', "{{ influx_node_type }}"]
