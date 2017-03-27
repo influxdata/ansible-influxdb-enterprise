@@ -46,10 +46,21 @@
     enabled: 'yes'
   tags: ['influx', 'service', "{{ influx_node_type }}"]
 
+- name: "{{ influx_node_type }} : Get list of nodes in the cluster"
+  command: "influxd-ctl show"
+  delegate_to: "{{ influx_meta_cluster_leader }}"
+  when:
+    - influx_cluster_auto_join
+    - influx_meta_cluster_leader is defined
+  register: influx_cluster_state
+  changed_when: false
+  tags: ['influx', 'cluster', "{{ influx_node_type }}"]
+
 - name: "{{ influx_node_type }} : Add node to cluster"
   command: "influxd-ctl add-{{ influx_node_type }} {{ ansible_hostname }}:{{ (influx_node_type == 'meta') | ternary(influx_meta_http_bind_port, influx_data_bind_port) }}"
   delegate_to: "{{ influx_meta_cluster_leader }}"
   when:
     - influx_cluster_auto_join
     - influx_meta_cluster_leader is defined
+    - ansible_hostname not in influx_cluster_state.stdout
   tags: ['influx', 'cluster', "{{ influx_node_type }}"]
