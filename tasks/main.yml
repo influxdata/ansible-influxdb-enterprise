@@ -46,8 +46,14 @@
     enabled: 'yes'
   tags: ['influx', 'service', "{{ influx_node_type }}"]
 
+
 - name: "{{ influx_node_type }} : Get list of nodes in the cluster"
-  command: "influxd-ctl show"
+  # TODO: Support for admin user authentication
+  uri:
+    body_format: 'json'
+    url: "{{ influx_meta_https_enabled | ternary('https', 'http') }}://0.0.0.0:{{ influx_meta_http_bind_port}}/show-cluster"
+    user: "{{ influx_data_admin_username | default(omit) }}"
+    password: "{{ influx_data_admin_password | default(omit) }}"
   delegate_to: "{{ influx_meta_cluster_leader }}"
   when:
     - influx_cluster_auto_join
@@ -62,5 +68,5 @@
   when:
     - influx_cluster_auto_join
     - influx_meta_cluster_leader is defined
-    - ansible_hostname not in influx_cluster_state.stdout
+    - ansible_hostname not in influx_cluster_state.json[influx_node_type]|map(attribute='tcpAddr')|join
   tags: ['influx', 'cluster', "{{ influx_node_type }}"]

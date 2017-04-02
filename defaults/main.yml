@@ -9,7 +9,6 @@ influx_manage_config: true # Build and install config from templates
 influx_cluster_auto_join: true # Attempt to add members to the cluster automatically
 influx_meta_cluster_leader: # The IP of the meta-node cluster leader
 
-
 # Enterprise settings
 influx_enterprise_license_key:
 
@@ -77,6 +76,8 @@ influx_data_shard_precreation_enabled: true
 influx_data_shard_precreation_check_interval: 10m0s
 influx_data_shard_precreation_advance_period: 30m0s
 influx_data_admin_enabled: false
+influx_data_admin_username:
+influx_data_admin_password:
 influx_data_admin_bind_address: :8083
 influx_data_admin_https_enabled: false
 influx_data_admin_https_certificate: /etc/ssl/influxdb.pem
