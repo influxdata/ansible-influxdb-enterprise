@@ -39,13 +39,25 @@
   when: influx_manage_config
   tags: ['influx', 'config', "{{ influx_node_type }}"]
 
+- name: "{{ influx_node_type }} : Build and install license file"
+  copy:
+    dest: "{{ influx_configuration_dir }}/{{ influx_license_filenames[influx_node_type] }}"
+    content: "{{ influx_enterprise_license}}"
+    force: 'yes'
+    backup: 'yes'
+    owner: 'influxdb'
+    group: 'influxdb'
+    mode: 0744
+  notify: "restart influxdb-{{ influx_node_type }}"
+  when: influx_enterprise_license is defined
+  tags: ['influx', 'config', "{{ influx_node_type }}"]
+
 - name: "{{ influx_node_type }} : Start and enable the service"
   service:
     name: "{{ influx_svc_names[influx_node_type] }}"
     state: 'running'
     enabled: 'yes'
   tags: ['influx', 'service', "{{ influx_node_type }}"]
-
 
 - name: "{{ influx_node_type }} : Get list of nodes in the cluster"
   # TODO: Support for admin user authentication
