@@ -11,7 +11,6 @@
         regexp: '.*{{ item }}$'
         line: "{{ hostvars[item].facter_ipaddress_eth1 }}  {{item}}"
         state: 'present'
-      when: groups['meta-nodes'] is defined
       with_items: "{{ groups['influx-nodes'] }}"
   roles:
       - { role: 'ansible-influxdb-enterprise' }
