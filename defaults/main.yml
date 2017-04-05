@@ -13,6 +13,7 @@ influx_queries: []
 
 # Enterprise settings
 influx_enterprise_license_key:
+influx_enterprise_license:
 
 # influxdb-meta.conf.j2 template options
 influx_meta_reporting_disabled: false
@@ -20,7 +21,7 @@ influx_meta_bind_address:
 influx_meta_bind_port: 8089
 influx_meta_registration_enabled: false
 influx_meta_registration_server_url:
-influx_meta_license_path:
+influx_meta_license_path: "{{ influx_configuration_dir }}/{{ influx_license_filenames[influx_node_type] }}"
 influx_meta_dir: /var/lib/influxdb/meta
 influx_meta_http_bind_address:
 influx_meta_http_bind_port: 8091
@@ -47,7 +48,7 @@ influx_data_disable_reporting: false
 influx_data_meta_tls_enabled: false
 influx_data_registration_enabled: false
 influx_data_registration_server_url:
-influx_data_license_path:
+influx_data_license_path: "{{ influx_configuration_dir }}/{{ influx_license_filenames[influx_node_type] }}"
 influx_data_enabled: true
 influx_data_dir: /var/lib/influxdb/data
 influx_data_max_wal_size: 104857600
