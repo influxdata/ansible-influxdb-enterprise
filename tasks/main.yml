@@ -70,3 +70,47 @@
     - influx_meta_cluster_leader is defined
     - ansible_hostname not in influx_cluster_state.json[influx_node_type]|map(attribute='tcpAddr')|join
   tags: ['influx', 'cluster', "{{ influx_node_type }}"]
+
+- name: "{{ influx_node_type }}: Creating users and assigning privileges"
+  uri:
+    url: 'http://localhost:8091/user'
+    method: 'POST'
+    body:
+      action: "create"
+      user:
+        name: "{{ item.username }}"
+        password: "{{ item.password }}"
+        permissions: "{{ item.permissions }}"
+    status_code: 200
+    body_format: json
+  with_items: "{{ influx_users }}"
+  delegate_to: "{{ influx_meta_cluster_leader }}"
+  tags: ['influx', 'users', "{{ influx_node_type }}"]
+  run_once: true
+  ignore_errors: true
+  changed_when: false
+
+- name: "{{ influx_node_type }}: Creating databases"
+  uri:
+    url: "http://localhost:8086/query?q=CREATE%20DATABASE%20{{ item|urlencode }}"
+    method: 'POST'
+    user: "{{ influx_data_admin_username | default(omit) }}"
+    password: "{{ influx_data_admin_password | default(omit) }}"
+    status_code: 200
+  with_items: "{{ influx_databases }}"
+  tags: ['influx', 'databases', "{{ influx_node_type }}"]
+  ignore_errors: true
+  changed_when: false
+  when: influx_node_type == 'data'
+
+- name: "{{ influx_node_type }}: Creating databases"
+  uri:
+    url: "http://localhost:8086/query?q=CREATE%20RETENTION%20POLICY%20{{ item.name }}%20ON%20{{ item.database}}%20DURATION%20{{ item.duration }}%20REPLICATION%20{{ item.replication }}{{item.default |ternary('%20default', '')}}"
+    method: 'POST'
+    user: "{{ influx_data_admin_username | default(omit) }}"
+    password: "{{ influx_data_admin_password | default(omit) }}"
+    status_code: 200
+  with_items: "{{ influx_retention_policies }}"
+  tags: ['influx', 'retention_policies', "{{ influx_node_type }}"]
+  changed_when: false
+  when: influx_node_type == 'data'
