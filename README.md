@@ -15,7 +15,7 @@ Install to your roles directory:
 
 ` $ ansible-galaxy install -r requirements.yaml`
 
-Include in your Playbooks:
+Include in your Playbooks (see [this example](https://github.com/influxdata/ansible-influxdb-enterprise/blob/master/tests/vagrant.yml) for a more detailed usage):
 
 ```
 ---
