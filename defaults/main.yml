@@ -9,8 +9,7 @@ influx_manage_config: true # Build and install config from templates
 influx_cluster_auto_join: true # Attempt to add members to the cluster automatically
 influx_meta_cluster_leader: # The IP of the meta-node cluster leader
 influx_users: []
-influx_databases: []
-influx_retention_policies: []
+influx_queries: []
 
 # Enterprise settings
 influx_enterprise_license_key:

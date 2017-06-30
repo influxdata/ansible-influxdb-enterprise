@@ -32,6 +32,10 @@ Include in your Playbooks (see [this example](https://github.com/influxdata/ansi
   influx_cluster_auto_join: true
   influx_meta_cluster_leader: influxdb_001
   influx_enterprise_license_key: XXX-XXX-XXX
+  influx_queries:
+    - "CREATE DATABASE test"
+    - "CREATE RETENTION POLICY testrp ON test DURATION 24h REPLICATION 2 default"
+    - "ALTER RETENTION POLICY autogen ON test DURATION 666h REPLICATION 2 default"
 ```
 
 # Prerequisites

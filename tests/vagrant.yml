@@ -22,20 +22,8 @@
           password: "asdf1234",
           permissions: {"": ["ViewAdmin", "ViewChronograf", "CreateDatabase", "CreateUserAndRole", "DropDatabase", "DropData", "ReadData", "WriteData", "ManageShard", "ManageContinuousQuery", "ManageQuery", "ManageSubscription", "Monitor"] }
         }
-    influx_databases:
-      - "test"
-    influx_retention_policies:
-      - {
-          name: "test",
-          database: "test",
-          duration: "168h",
-          replication: "1",
-          default: false
-        }
-      - {
-          name: "test_default",
-          database: "test",
-          duration: "169h",
-          replication: "1",
-          default: true
-        }
+
+    influx_queries:
+       -  "CREATE DATABASE test"
+       -  "CREATE RETENTION POLICY test ON test DURATION 24h REPLICATION 2 default"
+       -  "ALTER RETENTION POLICY autogen ON test DURATION 666h REPLICATION 2"
