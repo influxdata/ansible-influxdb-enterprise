@@ -15,3 +15,15 @@
   roles:
       - { role: 'ansible-influxdb-enterprise' }
       - { role: 'ansible-influxdb-enterprise', influx_node_type: 'data' }
+  vars:
+    influx_users:
+      - {
+          username: "testadmin",
+          password: "asdf1234",
+          permissions: {"": ["ViewAdmin", "ViewChronograf", "CreateDatabase", "CreateUserAndRole", "DropDatabase", "DropData", "ReadData", "WriteData", "ManageShard", "ManageContinuousQuery", "ManageQuery", "ManageSubscription", "Monitor"] }
+        }
+
+    influx_queries:
+       -  "CREATE DATABASE test"
+       -  "CREATE RETENTION POLICY test ON test DURATION 24h REPLICATION 2 default"
+       -  "ALTER RETENTION POLICY autogen ON test DURATION 666h REPLICATION 2"

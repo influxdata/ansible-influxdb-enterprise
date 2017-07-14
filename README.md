@@ -15,7 +15,7 @@ Install to your roles directory:
 
 ` $ ansible-galaxy install -r requirements.yaml`
 
-Include in your Playbooks:
+Include in your Playbooks (see [this example](https://github.com/influxdata/ansible-influxdb-enterprise/blob/master/tests/vagrant.yml) for a more detailed usage):
 
 ```
 ---
@@ -32,6 +32,10 @@ Include in your Playbooks:
   influx_cluster_auto_join: true
   influx_meta_cluster_leader: influxdb_001
   influx_enterprise_license_key: XXX-XXX-XXX
+  influx_queries:
+    - "CREATE DATABASE test"
+    - "CREATE RETENTION POLICY testrp ON test DURATION 24h REPLICATION 2 default"
+    - "ALTER RETENTION POLICY autogen ON test DURATION 666h REPLICATION 2 default"
 ```
 
 # Prerequisites
