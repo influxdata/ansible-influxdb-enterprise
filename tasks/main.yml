@@ -42,7 +42,7 @@
 - name: "{{ influx_node_type }} : Start and enable the service"
   service:
     name: "{{ influx_svc_names[influx_node_type] }}"
-    state: 'running'
+    state: 'started'
     enabled: 'yes'
   tags: ['influx', 'service', "{{ influx_node_type }}"]
 
