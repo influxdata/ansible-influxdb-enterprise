@@ -14,7 +14,7 @@
 
 - name: "{{influx_node_type}} : {{ ansible_os_family }} : Install packages"
   yum:
-    name: "{{ influx_pkg_base_url }}/influxdb-{{ influx_node_type }}_{{ influx_version}}_amd64.rpm"
+    name: "{{ influx_pkg_base_url }}/influxdb-{{ influx_node_type }}_{{ influx_version}}.x86_64.rpm"
     state: 'present'
   when: ansible_os_family == 'RedHat'
   tags: ['influx', 'install', "{{ influx_node_type }}"]
