@@ -13,8 +13,10 @@ influx_queries: []
 
 # Enterprise settings
 influx_enterprise_license_key:
+# The contents of a provided license file.
+influx_enterprise_license: ""
+# Where the file will be installed on the remote host.
 influx_enterprise_license_path: ""
-influx_enterprise_license: null
 
 # influxdb-meta.conf.j2 template options
 influx_meta_reporting_disabled: false

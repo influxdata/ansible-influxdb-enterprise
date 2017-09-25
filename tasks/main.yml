@@ -49,7 +49,7 @@
     group: 'influxdb'
     mode: 0744
   notify: "restart influxdb-{{ influx_node_type }}"
-  when: influx_enterprise_license is not null
+  when: influx_enterprise_license != ""
   tags: ['influx', 'config', "{{ influx_node_type }}"]
 
 - name: "{{ influx_node_type }} : Start and enable the service"
