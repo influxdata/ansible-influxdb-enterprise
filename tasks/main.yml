@@ -41,7 +41,7 @@
 
 - name: "{{ influx_node_type }} : Build and install license file"
   copy:
-    dest: "{{ influx_configuration_dir }}/{{ influx_license_filenames[influx_node_type] }}"
+    dest: "{{ influx_enterprise_license_path }}"
     content: "{{ influx_enterprise_license}}"
     force: 'yes'
     backup: 'yes'
@@ -49,7 +49,7 @@
     group: 'influxdb'
     mode: 0744
   notify: "restart influxdb-{{ influx_node_type }}"
-  when: influx_enterprise_license is defined
+  when: influx_enterprise_license is not null
   tags: ['influx', 'config', "{{ influx_node_type }}"]
 
 - name: "{{ influx_node_type }} : Start and enable the service"
