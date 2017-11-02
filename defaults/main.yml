@@ -109,3 +109,4 @@ influx_data_hh_retry_interval: 1s
 influx_data_hh_retry_max_interval: 1m0s
 influx_data_hh_purge_interval: 1h0m0s
 influx_data_subscriber_enabled: true
+influx_data_max_series_per_database: 1000000

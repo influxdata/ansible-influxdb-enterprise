@@ -42,6 +42,7 @@ bind-address = "{{ influx_data_bind_address }}:{{ influx_data_bind_port|mandator
   compact-full-write-cold-duration = "{{ influx_data_compact_full_write_cold_duration|mandatory }}"
   max-points-per-block = {{ influx_data_max_points_per_block|mandatory }}
   data-logging-enabled = {{ influx_data_data_logging_enabled|lower|mandatory }}
+  max-series-per-database = {{ influx_data_max_series_per_database }}
 
 [cluster]
   force-remote-mapping = {{ influx_data_force_remote_mapping|lower|mandatory }}

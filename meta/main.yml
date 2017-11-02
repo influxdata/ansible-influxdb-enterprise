@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  author: Ross McDonald
+  author: InfluxData
   description: Install and configure InfluxDB Enterprise, a time-series database
   company: InfluxData
   license: MIT
