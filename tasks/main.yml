@@ -3,28 +3,28 @@
   fail:
     msg: "Invalid node type configured, can only be 'meta' or 'data'"
   when: influx_node_type not in influx_node_types
-  tags: 'influx'
+  tags: 'influxdb'
 
 - name: "{{ influx_node_type }} : {{ ansible_os_family }} : Install packages"
   apt:
       deb: "{{ influx_pkg_base_url }}/influxdb-{{ influx_node_type }}_{{ influx_version}}_amd64.deb"
       state: 'present'
   when: ansible_os_family == 'Debian'
-  tags: ['influx', 'install', "{{ influx_node_type }}"]
+  tags: ['influxdb', 'install', "{{ influx_node_type }}"]
 
 - name: "{{influx_node_type}} : {{ ansible_os_family }} : Install packages"
   yum:
     name: "{{ influx_pkg_base_url }}/influxdb-{{ influx_node_type }}-{{ influx_version}}.x86_64.rpm"
     state: 'present'
   when: ansible_os_family == 'RedHat'
-  tags: ['influx', 'install', "{{ influx_node_type }}"]
+  tags: ['influxdb', 'influxdb-install', "{{ influx_node_type }}"]
 
 - name: "{{ influx_node_type }} : Create configuration directory path"
   file:
     path: "{{ influx_configuration_dir }}"
     state: 'directory'
   when: influx_manage_config
-  tags: ['influx', 'config', "{{ influx_node_type }}"]
+  tags: ['influxdb', 'influxdb-config', "{{ influx_node_type }}"]
 
 - name: "{{ influx_node_type }} : Build and install configuration file"
   template:
@@ -37,7 +37,7 @@
     mode: 0744
   notify: "restart influxdb-{{ influx_node_type }}"
   when: influx_manage_config
-  tags: ['influx', 'config', "{{ influx_node_type }}"]
+  tags: ['influxdb', 'influxdb-config', "{{ influx_node_type }}"]
 
 - name: "{{ influx_node_type }} : Build and install license file"
   copy:
@@ -50,14 +50,14 @@
     mode: 0744
   notify: "restart influxdb-{{ influx_node_type }}"
   when: influx_enterprise_license != ""
-  tags: ['influx', 'config', "{{ influx_node_type }}"]
+  tags: ['influxdb', 'influxdb-config', "{{ influx_node_type }}"]
 
 - name: "{{ influx_node_type }} : Start and enable the service"
   service:
     name: "{{ influx_svc_names[influx_node_type] }}"
     state: 'started'
     enabled: 'yes'
-  tags: ['influx', 'service', "{{ influx_node_type }}"]
+  tags: ['influxdb', 'influxdb-service', "{{ influx_node_type }}"]
 
 
 - name: "{{ influx_node_type }} : Get list of nodes in the cluster"
@@ -73,7 +73,7 @@
     - influx_meta_cluster_leader is defined
   register: influx_cluster_state
   changed_when: false
-  tags: ['influx', 'cluster', "{{ influx_node_type }}"]
+  tags: ['influxdb', 'cluster', "{{ influx_node_type }}"]
 
 - name: "{{ influx_node_type }} : Add node to cluster"
   command: "influxd-ctl add-{{ influx_node_type }} {{ ansible_hostname }}:{{ (influx_node_type == 'meta') | ternary(influx_meta_http_bind_port, influx_data_bind_port) }}"
@@ -82,7 +82,7 @@
     - influx_cluster_auto_join
     - influx_meta_cluster_leader is defined
     - ansible_hostname not in influx_cluster_state.json[influx_node_type]|map(attribute='tcpAddr')|join
-  tags: ['influx', 'cluster', "{{ influx_node_type }}"]
+  tags: ['influxdb', 'influxdb-cluster', "{{ influx_node_type }}"]
 
 - name: "{{ influx_node_type }}: Creating users and assigning privileges"
   uri:
@@ -98,7 +98,7 @@
     body_format: 'json'
     follow_redirects: 'all'
   with_items: "{{ influx_users }}"
-  tags: ['influx', 'users', "{{ influx_node_type }}"]
+  tags: ['influxdb', 'users', "{{ influx_node_type }}"]
   run_once: true
   ignore_errors: true
   changed_when: false
@@ -111,6 +111,6 @@
     password: "{{ influx_data_admin_password | default(omit) }}"
     status_code: 200
   with_items: "{{ influx_queries }}"
-  tags: ['influx', 'query', "{{ influx_node_type }}"]
+  tags: ['influxdb', 'influxdb-cluster', "{{ influx_node_type }}"]
   changed_when: false
   when: influx_node_type == 'data'
