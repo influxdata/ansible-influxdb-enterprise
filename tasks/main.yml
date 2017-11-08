@@ -10,7 +10,7 @@
       deb: "{{ influx_pkg_base_url }}/influxdb-{{ influx_node_type }}_{{ influx_version}}_amd64.deb"
       state: 'present'
   when: ansible_os_family == 'Debian'
-  tags: ['influxdb', 'install', "{{ influx_node_type }}"]
+  tags: ['influxdb', 'influxdb-install', "{{ influx_node_type }}"]
 
 - name: "{{influx_node_type}} : {{ ansible_os_family }} : Install packages"
   yum:
