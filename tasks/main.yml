@@ -102,6 +102,7 @@
   run_once: true
   ignore_errors: true
   changed_when: false
+  no_log: true
 
 - name: "{{ influx_node_type }}: Running queries"
   uri:
