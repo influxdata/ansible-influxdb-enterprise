@@ -1,24 +1,25 @@
 ---
 galaxy_info:
-  author: InfluxData
-  description: Install and configure InfluxDB Enterprise, a time-series database
-  company: InfluxData
-  license: MIT
+  author: 'InfluxData'
+  description: 'Install and configure InfluxDB Enterprise, a time-series database'
+  company: 'InfluxData'
+  license: 'MIT'
   min_ansible_version: 2.2
   platforms:
-    - name: EL
+    - name: 'EL'
       versions:
         - 6
         - 7
-    - name: Ubuntu
+    - name: 'Ubuntu'
       versions:
-        - trusty
-        - utopic
-        - vivid
-    - name: Debian
+        - 'trusty'
+        - 'utopic'
+        - 'vivid'
+    - name: 'Debian'
       versions:
-        - jessie
-        - wheezy
+        - 'stretch'
+        - 'jessie'
+        - 'wheezy'
   categories:
     - "clustering"
     - "database:nosql"

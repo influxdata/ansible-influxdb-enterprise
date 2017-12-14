@@ -43,6 +43,7 @@ bind-address = "{{ influx_data_bind_address }}:{{ influx_data_bind_port|mandator
   max-points-per-block = {{ influx_data_max_points_per_block|mandatory }}
   data-logging-enabled = {{ influx_data_data_logging_enabled|lower|mandatory }}
   max-series-per-database = {{ influx_data_max_series_per_database }}
+  max-values-per-tag = {{ influx_data_max_values_per_tag }}
 
 [cluster]
   force-remote-mapping = {{ influx_data_force_remote_mapping|lower|mandatory }}
