@@ -73,7 +73,7 @@
     - influx_meta_cluster_leader is defined
   register: influx_cluster_state
   changed_when: false
-  tags: ['influxdb', 'cluster', "{{ influx_node_type }}"]
+  tags: ['influxdb', 'influxdb-cluster', "{{ influx_node_type }}"]
 
 - name: "{{ influx_node_type }} : Add node to cluster"
   command: "influxd-ctl add-{{ influx_node_type }} {{ ansible_hostname }}:{{ (influx_node_type == 'meta') | ternary(influx_meta_http_bind_port, influx_data_bind_port) }}"
@@ -98,7 +98,7 @@
     body_format: 'json'
     follow_redirects: 'all'
   with_items: "{{ influx_users }}"
-  tags: ['influxdb', 'users', "{{ influx_node_type }}"]
+  tags: ['influxdb', 'infuxdb-users', 'influxdb-perms', "{{ influx_node_type }}"]
   run_once: true
   ignore_errors: true
   changed_when: false
