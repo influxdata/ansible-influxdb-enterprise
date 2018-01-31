@@ -38,6 +38,8 @@ Include in your Playbooks (see [this example](https://github.com/influxdata/ansi
     - "ALTER RETENTION POLICY autogen ON test DURATION 666h REPLICATION 2 default"
 ```
 
+_Note: When bringing up the cluster for the first time, it's a good idea to use `--skip-tags=influxdb-cluster`, this ensures all hosts are up before establishing a cluster. It's also wise to run against the first meta-node first using the `--limit` option. We'll improve this in the future._
+
 # Prerequisites
 
 * InfluxDB Enterprise License Key, a free trial can be obtained [here](https://www.influxdata.com/products/)
