@@ -19,95 +19,96 @@ influx_enterprise_license: ""
 influx_enterprise_license_path: ""
 
 # influxdb-meta.conf.j2 template options
-influx_meta_reporting_disabled: false
+influx_meta_announcement_expiration: 30s
 influx_meta_bind_address:
 influx_meta_bind_port: 8089
-influx_meta_registration_enabled: false
-influx_meta_registration_server_url:
+influx_meta_cluster_tracing: false
+influx_meta_commit_timeout: 50ms
 influx_meta_dir: /var/lib/influxdb/meta
+influx_meta_election_timeout: 1s
+influx_meta_gossip_frequency: 5s
+influx_meta_heartbeat_timeout: 1s
 influx_meta_http_bind_address:
 influx_meta_http_bind_port: 8091
-influx_meta_https_enabled: false
 influx_meta_https_certificate:
-influx_meta_gossip_frequency: 5s
-influx_meta_announcement_expiration: 30s
-influx_meta_retention_autocreate: true
-influx_meta_election_timeout: 1s
-influx_meta_heartbeat_timeout: 1s
+influx_meta_https_enabled: false
 influx_meta_leader_lease_timeout: 500ms
-influx_meta_commit_timeout: 50ms
-influx_meta_cluster_tracing: false
-influx_meta_raft_promotion_enabled: true
+influx_meta_lease_duration: 1m0s
 influx_meta_logging_enabled: true
 influx_meta_pprof_enabled: false
-influx_meta_lease_duration: 1m0s
+influx_meta_raft_promotion_enabled: true
+influx_meta_registration_enabled: false
+influx_meta_registration_server_url:
+influx_meta_reporting_disabled: false
+influx_meta_retention_autocreate: true
 
 # influxdb-data.conf.j2 parameters
+influx_data_admin_bind_address: :8083
+influx_data_admin_enabled: false
+influx_data_admin_https_certificate: /etc/ssl/influxdb.pem
+influx_data_admin_https_enabled: false
+influx_data_admin_password:
+influx_data_admin_username:
 influx_data_bind_address:
 influx_data_bind_port: 8088
-influx_data_configuration_dir: /etc/influxdb
-influx_data_disable_reporting: false
-influx_data_meta_tls_enabled: false
-influx_data_registration_enabled: false
-influx_data_registration_server_url:
-influx_data_enabled: true
-influx_data_dir: /var/lib/influxdb/data
-influx_data_max_wal_size: 104857600
-influx_data_wal_flush_interval: 10m0s
-influx_data_wal_partition_flush_delay: 2s
-influx_data_wal_dir: /var/lib/influxdb/wal
-influx_data_wal_logging_enabled: true
-influx_data_wal_ready_series_size: 30720
-influx_data_wal_compaction_threshold: 0.5
-influx_data_wal_max_series_size: 1048576
-influx_data_wal_flush_cold_interval: 5s
-influx_data_wal_partition_size_threshold: 52428800
-influx_data_query_log_enabled: true
 influx_data_cache_max_memory_size: 524288000
 influx_data_cache_snapshot_memory_size: 26214400
 influx_data_cache_snapshot_write_cold_duration: 1h0m0s
 influx_data_compact_full_write_cold_duration: 24h0m0s
-influx_data_max_points_per_block: 0
-influx_data_data_logging_enabled: true
-influx_data_force_remote_mapping: false
-influx_data_write_timeout: 5s
-influx_data_shard_writer_timeout: 5s
-influx_data_max_remote_write_connections: 3
-influx_data_shard_mapper_timeout: 5s
-influx_data_retention_enabled: true
-influx_data_retention_check_interval: 30m0s
-influx_data_shard_precreation_enabled: true
-influx_data_shard_precreation_check_interval: 10m0s
-influx_data_shard_precreation_advance_period: 30m0s
-influx_data_admin_enabled: false
-influx_data_admin_username:
-influx_data_admin_password:
-influx_data_admin_bind_address: :8083
-influx_data_admin_https_enabled: false
-influx_data_admin_https_certificate: /etc/ssl/influxdb.pem
-influx_data_monitor_store_enabled: true
-influx_data_monitor_store_database: _internal
-influx_data_monitor_store_interval: 10s
-influx_data_http_enabled: true
-influx_data_http_bind_address:
-influx_data_http_bind_port: 8086
-influx_data_http_auth_enabled: false
-influx_data_http_log_enabled: true
-influx_data_http_write_tracing: false
-influx_data_http_pprof_enabled: false
-influx_data_http_https_enabled: false
-influx_data_http_https_certificate: /etc/ssl/influxdb.pem
-influx_data_cq_log_enabled: true
+influx_data_configuration_dir: /etc/influxdb
 influx_data_cq_enabled: true
+influx_data_cq_log_enabled: true
 influx_data_cq_run_interval: 1s
-influx_data_hh_enabled: true
+influx_data_data_logging_enabled: true
+influx_data_dir: /var/lib/influxdb/data
+influx_data_disable_reporting: false
+influx_data_enabled: true
+influx_data_force_remote_mapping: false
 influx_data_hh_dir: /var/lib/influxdb/hh
-influx_data_hh_max_size: 1073741824
+influx_data_hh_enabled: true
 influx_data_hh_max_age: 168h0m0s
-influx_data_hh_retry_rate_limit: 0
+influx_data_hh_max_size: 1073741824
+influx_data_hh_purge_interval: 1h0m0s
 influx_data_hh_retry_interval: 1s
 influx_data_hh_retry_max_interval: 1m0s
-influx_data_hh_purge_interval: 1h0m0s
-influx_data_subscriber_enabled: true
+influx_data_hh_retry_rate_limit: 0
+influx_data_http_auth_enabled: false
+influx_data_http_bind_address:
+influx_data_http_bind_port: 8086
+influx_data_http_enabled: true
+influx_data_http_https_certificate: /etc/ssl/influxdb.pem
+influx_data_http_https_enabled: false
+influx_data_http_log_enabled: true
+influx_data_http_pprof_enabled: false
+influx_data_http_write_tracing: false
+influx_data_max_concurrent_compactions: 0
+influx_data_max_points_per_block: 0
+influx_data_max_remote_write_connections: 3
 influx_data_max_series_per_database: 1000000
 influx_data_max_values_per_tag: 100000
+influx_data_max_wal_size: 104857600
+influx_data_meta_tls_enabled: false
+influx_data_monitor_store_database: _internal
+influx_data_monitor_store_enabled: true
+influx_data_monitor_store_interval: 10s
+influx_data_query_log_enabled: true
+influx_data_registration_enabled: false
+influx_data_registration_server_url:
+influx_data_retention_check_interval: 30m0s
+influx_data_retention_enabled: true
+influx_data_shard_mapper_timeout: 5s
+influx_data_shard_precreation_advance_period: 30m0s
+influx_data_shard_precreation_check_interval: 10m0s
+influx_data_shard_precreation_enabled: true
+influx_data_shard_writer_timeout: 5s
+influx_data_subscriber_enabled: true
+influx_data_wal_compaction_threshold: 0.5
+influx_data_wal_dir: /var/lib/influxdb/wal
+influx_data_wal_flush_cold_interval: 5s
+influx_data_wal_flush_interval: 10m0s
+influx_data_wal_logging_enabled: true
+influx_data_wal_max_series_size: 1048576
+influx_data_wal_partition_flush_delay: 2s
+influx_data_wal_partition_size_threshold: 52428800
+influx_data_wal_ready_series_size: 30720
+influx_data_write_timeout: 5s
