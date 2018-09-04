@@ -18,12 +18,18 @@ bind-address = "{{ influx_data_bind_address }}:{{ influx_data_bind_port|mandator
   license-key = "{{ influx_enterprise_license_key|default("", true) }}"
   license-path = "{{ influx_data_license_path|default("", true) }}"
 
+[anti-entropy]
+  enabled = {{ influx_anti_entropy_enabled|lower|mandatory }}
+  check-interval = "{{ influx_anti_check_interval }}"
+  max-fetch = {{ influx_anti_entropy_max_fetch }}
+
 # The meta section can be disregarded
 [meta]
   dir = "/var/lib/influxdb/meta"
 
 [data]
   enabled = {{ influx_data_enabled|lower|mandatory }}
+  index-version = {{ influx_data_index_version|mandatory }}
   dir = "{{ influx_data_dir|mandatory }}"
   max-wal-size = {{ influx_data_max_wal_size|mandatory }}
   wal-flush-interval = "{{ influx_data_wal_flush_interval|mandatory }}"
