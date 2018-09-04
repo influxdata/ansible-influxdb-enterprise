@@ -29,7 +29,7 @@ bind-address = "{{ influx_data_bind_address }}:{{ influx_data_bind_port|mandator
 
 [data]
   enabled = {{ influx_data_enabled|lower|mandatory }}
-  index-version = {{ influx_data_index_version|mandatory }}
+  index-version = "{{ influx_data_index_version|mandatory }}"
   dir = "{{ influx_data_dir|mandatory }}"
   max-wal-size = {{ influx_data_max_wal_size|mandatory }}
   wal-flush-interval = "{{ influx_data_wal_flush_interval|mandatory }}"
