@@ -44,6 +44,7 @@ influx_meta_lease_duration: 1m0s
 
 # influxdb-data.conf.j2 parameters
 influx_data_bind_address:
+influx_data_index_version: "inmem"
 influx_data_bind_port: 8088
 influx_data_configuration_dir: /etc/influxdb
 influx_data_disable_reporting: false
