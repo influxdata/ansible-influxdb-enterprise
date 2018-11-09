@@ -64,7 +64,7 @@ influx_data_wal_max_series_size: 1048576
 influx_data_wal_flush_cold_interval: 5s
 influx_data_wal_partition_size_threshold: 52428800
 influx_data_query_log_enabled: true
-influx_data_cache_max_memory_size: 524288000
+influx_data_cache_max_memory_size: 1073741824
 influx_data_cache_snapshot_memory_size: 26214400
 influx_data_cache_snapshot_write_cold_duration: 1h0m0s
 influx_data_compact_full_write_cold_duration: 24h0m0s
